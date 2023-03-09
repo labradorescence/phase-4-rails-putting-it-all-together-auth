@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Error, Input, FormField, Label } from "../styles";
 
 function LoginForm({ onLogin }) {
@@ -7,9 +8,13 @@ function LoginForm({ onLogin }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  let history = useHistory();
+
   function handleSubmit(e) {
     e.preventDefault();
+
     setIsLoading(true);
+
     fetch("/login", {
       method: "POST",
       headers: {
@@ -17,12 +22,17 @@ function LoginForm({ onLogin }) {
       },
       body: JSON.stringify({ username, password }),
     }).then((r) => {
+
       setIsLoading(false);
-      if (r.ok) {
+
+      if (r.ok) { //if response is true
         r.json().then((user) => onLogin(user));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
+
+      history.push("/new")
+
     });
   }
 

@@ -18,6 +18,10 @@ function NewRecipe({ user }) {
 
 **Mix** sugar and spice. _Bake_ for 30 minutes.
   `);
+  const [userId, setUserId] = useState(user.id)
+
+
+
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -34,6 +38,7 @@ function NewRecipe({ user }) {
         title,
         instructions,
         minutes_to_complete: minutesToComplete,
+        user_id: userId
       }),
     }).then((r) => {
       setIsLoading(false);

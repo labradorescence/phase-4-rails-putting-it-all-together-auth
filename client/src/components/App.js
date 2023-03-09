@@ -6,7 +6,9 @@ import RecipeList from "../pages/RecipeList";
 import NewRecipe from "../pages/NewRecipe";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null); //if the default val as null, it comes out as falsy if it's not rendered yet so use null instead of empty string
+  
+  //console.log(user)
 
   useEffect(() => {
     // auto-login

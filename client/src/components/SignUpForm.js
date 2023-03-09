@@ -12,28 +12,30 @@ function SignUpForm({ onLogin }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setErrors([]);
-    setIsLoading(true);
-    fetch("/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-        password_confirmation: passwordConfirmation,
-        image_url: imageUrl,
-        bio,
-      }),
-    }).then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
-        r.json().then((user) => onLogin(user));
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
-    });
+    console.log("heyyy")
+
+   // setErrors([]);
+    //setIsLoading(true);
+    //fetch("/signup", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     username,
+    //     password,
+    //     password_confirmation: passwordConfirmation,
+    //     image_url: imageUrl,
+    //     bio,
+    //   }),
+    // }).then((r) => {
+    //   setIsLoading(false);
+    //   if (r.ok) {
+    //     r.json().then((user) => onLogin(user));
+    //   } else {
+    //     r.json().then((err) => setErrors(err.errors));
+    //   }
+    // });
   }
 
   return (
@@ -86,6 +88,7 @@ function SignUpForm({ onLogin }) {
           onChange={(e) => setBio(e.target.value)}
         />
       </FormField>
+
       <FormField>
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>

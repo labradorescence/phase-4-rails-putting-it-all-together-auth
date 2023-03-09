@@ -10,8 +10,15 @@ function RecipeList() {
   useEffect(() => {
     fetch("/recipes")
       .then((r) => r.json())
-      .then(setRecipes);
+      .then(data => {
+        // console.log(data)
+        setRecipes(data)
+        // console.log(recipes)
+      }
+);
   }, []);
+
+
 
   return (
     <Wrapper>
